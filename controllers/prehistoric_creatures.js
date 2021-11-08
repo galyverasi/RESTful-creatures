@@ -15,7 +15,6 @@ router.get('/', (req, res)=> {
             return creatures.type.toLowerCase() === typeFilter.toLowerCase()
         })
     }
-
     res.render('prehistoric_creatures/index.ejs', {creaturesData: creaturesData})
 })
 
@@ -24,7 +23,7 @@ router.get('/new', (req, res)=> {
     res.render('prehistoric_creatures/new.ejs')
 })
 
-// SHOW ROUTE
+// SHOW ROUTE displays the type and photo of a particular prehistoric creature (id = 1)
 router.get('/:idx', (req, res)=> {
     let creatures = fs.readFileSync('./prehistoric_creatures.json')
     let creaturesData = JSON.parse(creatures)
@@ -32,7 +31,7 @@ router.get('/:idx', (req, res)=> {
     res.render('prehistoric_creatures/show.ejs', {displayedCreature: creaturesData[creaturesIndex]})
 })
 
-// POST ROUTE POST A NEW CREATURE
+// POST ROUTE creates a prehistoric creature with the POST payload data
 router.post('/', (req, res)=> {
     let creatures = fs.readFileSync('./prehistoric_creatures.json')
     let creaturesData = JSON.parse(creatures)
